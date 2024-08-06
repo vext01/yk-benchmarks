@@ -15,6 +15,8 @@ export PATH=~/.cargo/bin/:${PATH}
 # Set up yk.
 git clone --recurse-submodules https://github.com/ykjit/yk
 cd yk
+#git reset --hard f1a09629
+#git submodule update
 cargo build --release -p ykcapi -vv
 export PATH=$(pwd)/bin:${PATH}
 cd ..
@@ -32,4 +34,7 @@ cd ..
 
 # Do a "quick" rebench run as a smoke-test.
 pipx install rebench
-~/.local/bin/rebench --quick --no-denoise -c rebench.conf
+for i in $(seq 100); do
+    echo ">>>>>> Run $i"
+    ~/.local/bin/rebench --quick --no-denoise -c rebench.conf
+done
